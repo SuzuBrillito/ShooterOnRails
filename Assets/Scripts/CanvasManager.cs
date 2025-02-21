@@ -9,6 +9,7 @@ public class CanvasManager : MonoBehaviour
     public void ReloadScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Time.timeScale = 1;
     }
 
     
@@ -20,6 +21,7 @@ public class CanvasManager : MonoBehaviour
     public void LoadGameScene()
     {
         SceneManager.LoadScene(1);
+        Time.timeScale = 1;
     }
 
     public void ExitGame()

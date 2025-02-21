@@ -26,6 +26,9 @@ public class PlayerMovement : MonoBehaviour
     public HealthBar healthBar;
     public GameObject dodgeEffect;
 
+    public GameObject pauseMenu;
+    private bool isPaused = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +40,14 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            TogglePause();
+        }
+
+        if(isPaused) return;
+
         healthBar.SetHealth(HealthPoints);
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
@@ -86,6 +97,22 @@ public class PlayerMovement : MonoBehaviour
         }
 
        
+    }
+
+    void TogglePause()
+    {
+        isPaused = !isPaused;
+
+        if (isPaused)
+        {
+            Time.timeScale = 0; // Pausa el tiempo
+            pauseMenu.SetActive(true); // Activa el menú de pausa
+        }
+        else
+        {
+            Time.timeScale = 1; // Reanuda el tiempo
+            pauseMenu.SetActive(false); // Desactiva el menú de pausa
+        }
     }
 
     void LocalMove(float x, float y, float speed)
@@ -149,8 +176,5 @@ public class PlayerMovement : MonoBehaviour
         canDodge = true;
     }
 
-    // private void playerBreak()
-    //{
-    //    dollyCartSpeed = dollyCartSpeed / 3;
-    //}
+   
 }

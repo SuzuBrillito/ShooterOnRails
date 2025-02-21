@@ -59,8 +59,5 @@ public class BulletClass : MonoBehaviour
         }
     }
 
-    public void Congelacion()
-    {
-        Time.timeScale = 0;
-    }
+   
 }
